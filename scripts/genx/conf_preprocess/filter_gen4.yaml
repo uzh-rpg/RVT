@@ -1,0 +1,2 @@
+apply_psee_bbox_filter: False
+apply_faulty_bbox_filter: True

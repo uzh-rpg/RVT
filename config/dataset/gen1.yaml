@@ -1,0 +1,9 @@
+defaults:
+  - base
+
+name: gen1
+ev_repr_name: 'stacked_histogram_dt=50_nbins=10'
+sequence_length: 11
+resolution_hw: [240, 304]
+downsample_by_factor_2: False
+only_load_end_labels: False

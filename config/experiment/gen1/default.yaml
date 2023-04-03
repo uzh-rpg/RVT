@@ -1,0 +1,42 @@
+# @package _global_
+defaults:
+  - /model/maxvit_yolox: default
+
+training:
+  precision: 16
+  max_epochs: 10000
+  max_steps: 400000
+  learning_rate: 0.0002
+  lr_scheduler:
+    use: True
+    total_steps: ${..max_steps}
+    pct_start: 0.005
+    div_factor: 20
+    final_div_factor: 10000
+validation:
+  val_check_interval: null
+  check_val_every_n_epoch: 1
+batch_size:
+  train: 8
+  eval: 8
+hardware:
+  num_workers:
+    train: 6
+    eval: 2
+dataset:
+  train:
+    sampling: 'mixed'
+    random:
+      weighted_sampling: False
+    mixed:
+      w_stream: 1
+      w_random: 1
+  eval:
+    sampling: 'stream'
+  ev_repr_name: 'stacked_histogram_dt=50_nbins=10'
+  sequence_length: 21
+  downsample_by_factor_2: False
+  only_load_end_labels: False
+model:
+  backbone:
+    partition_split_32: 1

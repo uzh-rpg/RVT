@@ -1,0 +1,12 @@
+# @package _global_
+defaults:
+  - default
+
+model:
+  backbone:
+    embed_dim: 48
+    stage:
+      attention:
+        dim_head: 24
+  fpn:
+    depth: 0.33

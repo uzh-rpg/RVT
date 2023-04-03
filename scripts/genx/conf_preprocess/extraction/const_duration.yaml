@@ -1,0 +1,3 @@
+method: DURATION
+# value is in milliseconds!
+value: 50

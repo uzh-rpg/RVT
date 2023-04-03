@@ -1,0 +1,64 @@
+# @package _global_
+defaults:
+  - override /model: rnndet
+
+model:
+  backbone:
+    name: MaxViTRNN
+    compile:
+      enable: False
+      args:
+        mode: reduce-overhead
+    input_channels: 20
+    enable_masking: False
+    partition_split_32: 2
+    embed_dim: 64
+    dim_multiplier: [1, 2, 4, 8]
+    num_blocks: [1, 1, 1, 1]
+    T_max_chrono_init: [4, 8, 16, 32]
+    stem:
+      patch_size: 4
+    stage:
+      downsample:
+        type: patch
+        overlap: True
+        norm_affine: True
+      attention:
+        use_torch_mha: False
+        partition_size: ???
+        dim_head: 32
+        attention_bias: True
+        mlp_activation: gelu
+        mlp_gated: False
+        mlp_bias: True
+        mlp_ratio: 4
+        drop_mlp: 0
+        drop_path: 0
+        ls_init_value: 1e-5
+      lstm:
+        dws_conv: False
+        dws_conv_only_hidden: True
+        dws_conv_kernel_size: 3
+        drop_cell_update: 0
+  fpn:
+    name: PAFPN
+    compile:
+      enable: False
+      args:
+        mode: reduce-overhead
+    depth: 0.67 # round(depth * 3) == num bottleneck blocks
+    # stage 1 is the first and len(num_layers) is the last
+    in_stages: [2, 3, 4]
+    depthwise: False
+    act: "silu"
+  head:
+    name: YoloX
+    compile:
+      enable: False
+      args:
+        mode: reduce-overhead
+    depthwise: False
+    act: "silu"
+  postprocess:
+    confidence_threshold: 0.1
+    nms_threshold: 0.45
