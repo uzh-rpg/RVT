@@ -241,7 +241,7 @@ class YOLOXHead(nn.Module):
             [x.flatten(start_dim=2) for x in inference_outputs], dim=2
         ).permute(0, 2, 1)
         if self.decode_in_inference:
-            return self.decode_outputs(outputs, dtype=xin[0].type()), losses
+            return self.decode_outputs(outputs), losses
         else:
             return outputs, losses
 
@@ -265,21 +265,22 @@ class YOLOXHead(nn.Module):
         output[..., 2:4] = torch.exp(output[..., 2:4]) * stride
         return output, grid
 
-    def decode_outputs(self, outputs, dtype):
+    def decode_outputs(self, outputs):
         if self.output_grids is None:
             assert self.output_strides is None
+            dtype = outputs.dtype
+            device = outputs.device
             grids = []
             strides = []
             for (hsize, wsize), stride in zip(self.hw, self.strides):
-                yv, xv = torch.meshgrid([torch.arange(hsize), torch.arange(wsize)])
+                yv, xv = torch.meshgrid([torch.arange(hsize, device=device, dtype=dtype),
+                                         torch.arange(wsize, device=device, dtype=dtype)])
                 grid = torch.stack((xv, yv), 2).view(1, -1, 2)
                 grids.append(grid)
                 shape = grid.shape[:2]
-                strides.append(torch.full((*shape, 1), stride))
-
-            self.output_grids = torch.cat(grids, dim=1).type(dtype)
-            self.output_strides = torch.cat(strides, dim=1).type(dtype)
-
+                strides.append(torch.full((*shape, 1), stride, device=device, dtype=dtype))
+            self.output_grids = torch.cat(grids, dim=1)
+            self.output_strides = torch.cat(strides, dim=1)
         outputs = torch.cat([
             (outputs[..., 0:2] + self.output_grids) * self.output_strides,
             torch.exp(outputs[..., 2:4]) * self.output_strides,
