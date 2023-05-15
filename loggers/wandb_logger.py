@@ -318,7 +318,10 @@ class WandbLogger(Logger):
                 print(f'num_new_cktps = {num_new_cktps}')
                 break
 
-        self._rm_but_top_k(checkpoint_callback.save_top_k)
+        try:
+            self._rm_but_top_k(checkpoint_callback.save_top_k)
+        except KeyError:
+            pass
 
     def _rm_but_top_k(self, top_k: int):
         # top_k == -1: save all models
