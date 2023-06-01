@@ -3,7 +3,9 @@
   <img src="https://rpg.ifi.uzh.ch/img/papers/arxiv22_detection_mgehrig/combo.png" width="750">
 </p>
 
-This is the official Pytorch implementation of the CVPR 2023 paper [Recurrent Vision Transformers for Object Detection with Event Cameras](https://arxiv.org/abs/2212.05598)
+This is the official Pytorch implementation of the CVPR 2023 paper [Recurrent Vision Transformers for Object Detection with Event Cameras](https://arxiv.org/abs/2212.05598).
+
+Watch the [**video**](https://youtu.be/H-NmQ5FFXqs) for a quick overview.
 
 ```bibtex
 @InProceedings{Gehrig_2023_CVPR,
