@@ -32,7 +32,7 @@ pytorch=2.0.0 torchvision=0.15.0 pytorch-cuda=$CUDA_VERSION \
 
 python -m pip install pytorch-lightning==1.8.6 wandb==0.14.0 \
 pandas==1.5.3 plotly==5.13.1 opencv-python==4.6.0.66 tabulate==0.9.0 \
-pycocotools==2.0.6 bbox-visualizer==0.1.0 StrEnum=0.4.10
+pycocotools==2.0.6 bbox-visualizer==0.1.0 StrEnum==0.4.10
 python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
 ```
 Detectron2 is not strictly required but speeds up the evaluation.
