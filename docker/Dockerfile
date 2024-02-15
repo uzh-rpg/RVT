@@ -60,6 +60,9 @@ RUN pip install --no-deps --use-pep517 git+https://github.com/abn/detectron2.git
 # Make port 80 available outside the container
 EXPOSE 80
 
+# Update ownership to ensure the 'dev' user has full access to miniforge 'rvt' environment directory.
+RUN chown -R dev /miniforge/envs/rvt
+
 USER dev
 
 # Initialize Conda, reload the shell configuration to apply changes and activate the 'RVT' environment.
