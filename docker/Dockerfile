@@ -22,6 +22,7 @@ RUN mkdir /home/dev/host-shared-drive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     git \
+    sudo \
     && rm -rf /var/lib/apt/lists/*
 
 # Avoid prompts from apt
