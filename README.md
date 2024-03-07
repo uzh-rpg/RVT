@@ -172,6 +172,10 @@ wandb.group_name=gen1 +experiment/gen1="${MDL_CFG}.yaml" hardware.gpus=${GPU_IDS
 batch_size.train=${BATCH_SIZE_PER_GPU} batch_size.eval=${BATCH_SIZE_PER_GPU} \
 hardware.num_workers.train=${TRAIN_WORKERS_PER_GPU} hardware.num_workers.eval=${EVAL_WORKERS_PER_GPU}
 ```
+## Works Built on This Project
+- [LEOD: Label-Efficient Object Detection for Event Cameras](https://github.com/Wuziyi616/LEOD). CVPR 2024
+
+Open a pull request if you would like to add your project here.
 
 ## Code Acknowledgments
 This project has used code from the following projects:
