@@ -41,10 +41,10 @@ Detectron2 is not strictly required but speeds up the evaluation.
 ### Venv
 Alternative to the conda installation.
 ```Bash
-python3 -m venv rvt
+python -m venv rvt
 source rvt/bin/activate
-pip install -r torch-req.txt --index-url https://download.pytorch.org/whl/cu118
-pip install -r requirements.txt
+python -m pip install -r torch-req.txt --index-url https://download.pytorch.org/whl/cu118
+python -m pip install -r requirements.txt
 ```
 Optionally, install Detectron2 within the *activated* venv
 ```Bash
