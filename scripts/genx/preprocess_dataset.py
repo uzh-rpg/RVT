@@ -21,6 +21,10 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import weakref
 
 import h5py
+try:
+    import hdf5plugin
+except ImportError:
+    pass
 from numba import jit
 import numpy as np
 from omegaconf import OmegaConf, DictConfig, MISSING

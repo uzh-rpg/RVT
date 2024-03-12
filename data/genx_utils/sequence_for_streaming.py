@@ -2,6 +2,10 @@ from pathlib import Path
 from typing import List, Optional, Union, Tuple
 
 import h5py
+try:
+    import hdf5plugin
+except ImportError:
+    pass
 import numpy as np
 import torch
 from omegaconf import DictConfig
