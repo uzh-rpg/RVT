@@ -16,7 +16,8 @@ Watch the [**video**](https://youtu.be/xZ-pNwHxHgY) for a quick overview.
 }
 ```
 
-## Conda Installation
+## Installation
+### Conda
 We highly recommend to use [Mambaforge](https://github.com/conda-forge/miniforge#mambaforge) to reduce the installation time.
 ```Bash
 conda create -y -n rvt python=3.9 pip
@@ -36,6 +37,19 @@ pycocotools==2.0.6 bbox-visualizer==0.1.0 StrEnum==0.4.10
 python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
 ```
 Detectron2 is not strictly required but speeds up the evaluation.
+
+### Venv
+Alternative to the conda installation.
+```Bash
+python3 -m venv rvt
+source rvt/bin/activate
+pip install -r torch-req.txt --index-url https://download.pytorch.org/whl/cu118
+pip install -r requirements.txt
+```
+Optionally, install Detectron2 within the *activated* venv
+```Bash
+python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
+```
 
 ## Required Data
 To evaluate or train RVT you will need to download the required preprocessed datasets:
