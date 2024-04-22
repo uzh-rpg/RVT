@@ -188,6 +188,7 @@ hardware.num_workers.train=${TRAIN_WORKERS_PER_GPU} hardware.num_workers.eval=${
 ```
 ## Works Built on This Project
 - [LEOD: Label-Efficient Object Detection for Event Cameras](https://github.com/Wuziyi616/LEOD). CVPR 2024
+- [State Space Models for Event Cameras](https://github.com/uzh-rpg/ssms_event_cameras). CVPR 2024
 
 Open a pull request if you would like to add your project here.
 
